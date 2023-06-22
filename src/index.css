@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
+}
+
+/* for the table */
+.rdt_TableRow {
+  border: none !important;
+  margin: 0.8rem 0;
+}
+
+.rdt_TableBody > * {
+  font-size: 1rem !important;
+}
+
+.rdt_TableCol_Sortable > * {
+  white-space: normal !important;
+}
+
+.rdt_TableHeadRow {
+  font-weight: 700;
+  font-size: 1.4rem;
+  border: none !important;
+}
+
+.rdt_TableBody {
+  min-height: 15rem;
+}
