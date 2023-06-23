@@ -3,7 +3,7 @@ import { createBrowserHistory } from "history";
 import { showToast } from "utils/show-toast";
 
 const authToken = sessionStorage.getItem("auth-token");
-console.log(authToken);
+
 if (authToken) {
   axios.defaults.headers.common.Authorization = `Bearer ${authToken}`;
 }
@@ -21,7 +21,7 @@ axios.interceptors.response.use(
       error?.response?.data?.statusCode === 401 &&
       error?.response?.data?.message !== "Invalid credentials!"
     ) {
-      sessionStorage.removeItem("selectedDepartment");
+      sessionStorage.removeItem("auth-token");
       showToast({
         type: "error",
         message: "Unauthorized, Please login to continue.",

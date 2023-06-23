@@ -1,5 +1,4 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { mutate } from "swr";
 import { Button, Flex, FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react"
 
@@ -11,12 +10,12 @@ import CustomModal from "components/custom-modal";
 interface Props {
   isOpen: boolean;
   close: (value: boolean) => void;
+  setOpenAddModal: (value: boolean) => void;
 }
 
-const NewLink = ({ isOpen, close }: Props) => {
-  const navigate = useNavigate();
+const NewLink = ({ isOpen, close, setOpenAddModal }: Props) => {
   const { loading, makeRequest } = useAxios();
-  
+
   const {
     handleSubmit,
     register,
@@ -25,16 +24,20 @@ const NewLink = ({ isOpen, close }: Props) => {
 
   const submit: SubmitHandler<any> = async data => {
     if (!data) return;
-    console.log(data);
 
     const {
-      // data: resData,
+      data: resData,
       status,
       error,
     } = await makeRequest({
       payload: data,
       method: "post",
       url: urls.createShortUrl,
+    });
+
+    await makeRequest({
+      method: "post",
+      url: urls.generateQrcode(resData?.data.id),
     });
 
     if (status === "error") {
@@ -51,8 +54,8 @@ const NewLink = ({ isOpen, close }: Props) => {
 
     mutate(`${urls.fetchUrls}`);
 
-    navigate("/links");
-  }
+    setOpenAddModal(false);
+  };
 
   return (
     <CustomModal
@@ -86,7 +89,11 @@ const NewLink = ({ isOpen, close }: Props) => {
           </FormControl>
           <FormControl>
             <FormLabel htmlFor="longUrl">Long Url</FormLabel>
-            <Input type="text" placeholder="Enter URL" {...register("longUrl")} />
+            <Input
+              type="text"
+              placeholder="Enter URL"
+              {...register("longUrl")}
+            />
             <FormErrorMessage>
               {errors?.longUrl && errors?.longUrl.message?.toString()}
             </FormErrorMessage>
@@ -106,6 +113,6 @@ const NewLink = ({ isOpen, close }: Props) => {
       </form>
     </CustomModal>
   );
-}
+};
 
 export default NewLink

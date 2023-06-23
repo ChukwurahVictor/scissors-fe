@@ -7,6 +7,7 @@ import { mutate } from "swr";
 
 
 import ActionMenu from "components/action-menu";
+import CustomSpinner from "components/custom-spinner";
 import { useFetchUrls } from "services/swr/link";
 import { UrlType } from "types";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +26,7 @@ const Home = () => {
   const navigate = useNavigate();
   const { makeRequest } = useAxios();
 
-  const { data } = useFetchUrls();
+  const { data, isGenerating } = useFetchUrls();
 
   const handleDelete = async(id: string) => {
     if (!data) return;
@@ -150,10 +151,25 @@ const Home = () => {
         <Input placeholder="search" w="20rem" h="3rem" borderRadius="10px" />
       </Flex>
       <Box mt="60px">
-        <DataTable data={data} columns={columns} pagination={true} />
+        <DataTable
+          data={data}
+          columns={columns}
+          pagination={true}
+          progressComponent={<CustomSpinner />}
+          progressPending={isGenerating}
+        />
       </Box>
-      <NewLink isOpen={openAddModal} close={setOpenAddModal}></NewLink>
-      <EditLink isOpen={openEditModal} row={link} setLink={setLink} setOpenEditModal={setOpenEditModal}></EditLink>
+      <NewLink
+        isOpen={openAddModal}
+        close={setOpenAddModal}
+        setOpenAddModal={setOpenAddModal}
+      ></NewLink>
+      <EditLink
+        isOpen={openEditModal}
+        row={link}
+        setLink={setLink}
+        setOpenEditModal={setOpenEditModal}
+      ></EditLink>
     </Container>
   );
 }

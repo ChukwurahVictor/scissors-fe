@@ -7,8 +7,8 @@ type Request<PType> = {
     method: "post" | "delete" | "patch" | "put";
 };
 
-type MakeRequest<RType> = <PType>(args: Request<PType>) => Promise<{
-    data: RType | null;
+type MakeRequest = <PType>(args: Request<PType>) => Promise<{
+    data: any;
     message?: string;
     status: "success" | "error";
     error: unknown;
@@ -16,7 +16,7 @@ type MakeRequest<RType> = <PType>(args: Request<PType>) => Promise<{
 
 function useAxios<RType>() {
     const [loading, setLoading] = useState<boolean>(false);
-    const makeRequest: MakeRequest<RType> = useCallback(async ({ payload, method, url }) => {
+    const makeRequest: MakeRequest = useCallback(async ({ payload, method, url }) => {
         try {
             setLoading(true);
             const response: AxiosResponse<RType> = await axios({
