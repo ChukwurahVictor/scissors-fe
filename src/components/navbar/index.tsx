@@ -19,7 +19,6 @@ const Navbar = () => {
    const navigate = useNavigate();
 
    const { isLoggedIn } = useAppSelector(selectAuth);
-   console.log(isLoggedIn);
 
    const handleLogout = () => {
      sessionStorage.removeItem("auth-token");

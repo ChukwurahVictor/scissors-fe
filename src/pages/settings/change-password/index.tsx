@@ -30,7 +30,6 @@ const ChangePassword = () => {
     if (!data) return;
 
     const {
-      // data: resData,
       status,
       error,
     } = await makeRequest({

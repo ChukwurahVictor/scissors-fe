@@ -67,8 +67,8 @@ const Login = () => {
       message: "Login Successful!",
     });
 
-    sessionStorage.setItem("auth-token", resData!.data.access_token);
-    dispatch(loginDispatch(resData!.data.user));
+    sessionStorage.setItem("auth-token", resData?.data.access_token);
+    dispatch(loginDispatch(resData?.data.user));
 
     navigate("/links");
   };

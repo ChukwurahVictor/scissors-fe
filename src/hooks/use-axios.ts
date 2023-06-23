@@ -1,4 +1,5 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios from 'services/axios/interceptor'
+import { AxiosError, AxiosResponse } from "axios";
 import { useCallback, useState } from "react";
 
 type Request<PType> = {

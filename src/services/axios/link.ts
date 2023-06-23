@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "services/axios/interceptor";
 import urls from "./urls";
 
 export const cleanedParams = <T>(queryParams: T) => {

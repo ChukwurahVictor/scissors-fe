@@ -62,7 +62,6 @@ const NewLink = ({ isOpen, close, setOpenAddModal }: Props) => {
       closeIcon
       description={"SHORTEN YOUR URL!"}
       contentProps={{ justifyContent: "center" }}
-      // closeIconClick={handleCloseModal}
       setModalOpen={close}
       modalOpen={isOpen}
       closeOnOverlayClick

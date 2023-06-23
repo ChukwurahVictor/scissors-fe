@@ -16,14 +16,12 @@ import CustomModal from "components/custom-modal";
 
 interface Props {
   isOpen: boolean;
-//   close: (value: boolean) => void;
   row: any;
   setLink: (value: any) => void;
   setOpenEditModal: (value: boolean) => void;
 }
 
 const EditLink = ({ isOpen, row, setLink, setOpenEditModal }: Props) => {
-//   const navigate = useNavigate();
   const { loading, makeRequest } = useAxios();
 
   const {
@@ -34,10 +32,8 @@ const EditLink = ({ isOpen, row, setLink, setOpenEditModal }: Props) => {
 
   const submit: SubmitHandler<any> = async data => {
     if (!data) return;
-    console.log(data);
 
     const {
-      // data: resData,
       status,
       error,
     } = await makeRequest({
@@ -60,22 +56,19 @@ const EditLink = ({ isOpen, row, setLink, setOpenEditModal }: Props) => {
 
     mutate(`${urls.fetchUrls}`);
     setOpenEditModal(false);
-
-    // navigate("/links");
   };
 
   const handleCloseModal = () => {
     setLink(undefined);
     setOpenEditModal(false);
   }
-  console.log(row);
+
   return (
     <CustomModal
       closeIcon
       contentProps={{ justifyContent: "center" }}
       description="EDIT LINK"
       closeIconClick={handleCloseModal}
-      //   setModalOpen={() => null}
       modalOpen={isOpen}
       setModalOpen={setOpenEditModal}
       closeOnOverlayClick

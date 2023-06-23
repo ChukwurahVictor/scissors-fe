@@ -91,7 +91,6 @@ export const authSlice = createSlice({
 },
   extraReducers: builder => {
     builder
-      // The `signin` action is handled by the `signinAsync` thunk.
       .addCase(signinAsync.pending, state => {
         state.status = "loading";
       })

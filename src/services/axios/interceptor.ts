@@ -1,27 +1,33 @@
-import axios from "axios";
-import { createBrowserHistory } from "history";
+import Axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { showToast } from "utils/show-toast";
+import { baseUrl } from './urls';
+import { createBrowserHistory } from "history";
 
-const authToken = sessionStorage.getItem("auth-token");
-
-if (authToken) {
-  axios.defaults.headers.common.Authorization = `Bearer ${authToken}`;
-}
+const axios = Axios.create({
+  baseURL: baseUrl,
+  headers: { 'Content-Type': 'application/json' }
+});
 
 export const history = createBrowserHistory();
 
-// axios.defaults.withCredentials = true;
+const axiosConfiguration = (config: AxiosRequestConfig) => {
+  const token = sessionStorage.getItem('auth-token');
+  if (token)
+    config.headers = {
+      ...(config.headers || {}),
+      Authorization: `Bearer ${token}`
+    };
+  return config;
+};
+
+axios.interceptors.request.use(axiosConfiguration as any);
 
 axios.interceptors.response.use(
-  function (response) {
-    return response;
+  (res: any) => {
+    return res;
   },
-  function (error) {
-    if (
-      error?.response?.data?.statusCode === 401 &&
-      error?.response?.data?.message !== "Invalid credentials!"
-    ) {
-      sessionStorage.removeItem("auth-token");
+  async (error: any) => {
+    if (error instanceof AxiosError && error.response?.status === 401){
       showToast({
         type: "error",
         message: "Unauthorized, Please login to continue.",
@@ -33,3 +39,5 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+export default axios;

@@ -39,7 +39,6 @@ const Signup = () => {
   });
 
   const submit: SubmitHandler<any> = async data => {
-    console.log(data);
     if (!data) return;
     const {
       data: resData,
@@ -62,8 +61,6 @@ const Signup = () => {
       type: "success",
       message: "Signup Successful!",
     });
-
-    console.log(resData)
 
     navigate(`/confirm-email/${resData!.data.id}`);
   };
