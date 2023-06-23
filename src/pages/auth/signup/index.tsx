@@ -14,6 +14,7 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  FormErrorMessage,
   Input,
   Text,
 } from "@chakra-ui/react";
@@ -91,7 +92,7 @@ const Signup = () => {
               {...register("userName")}
             />
             <FormErrorMessage>
-              {errors.name && errors.name.message}
+              {errors?.username && errors?.username.message?.toString()}
             </FormErrorMessage>
           </FormControl>
           <FormControl>
@@ -102,7 +103,7 @@ const Signup = () => {
               {...register("email")}
             />
             <FormErrorMessage>
-              {errors.name && errors.name.message}
+              {errors?.email && errors?.email.message?.toString()}
             </FormErrorMessage>
           </FormControl>
           <FormControl mt="10px">
@@ -114,7 +115,7 @@ const Signup = () => {
               {...register("password")}
             />
             <FormErrorMessage>
-              {errors.name && errors.name.message}
+              {errors?.password && errors?.password.message?.toString()}
             </FormErrorMessage>
           </FormControl>
           <Button
