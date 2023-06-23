@@ -7,7 +7,6 @@ import { mutate } from "swr";
 
 
 import ActionMenu from "components/action-menu";
-// import TablePagination from "components/table-pagination";
 import { useFetchUrls } from "services/swr/link";
 import { UrlType } from "types";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +14,6 @@ import useAxios from "hooks/use-axios";
 import urls from "services/axios/urls";
 import { showToast } from "utils/show-toast";
 
-// import ViewLink from "./view-link";
 import EditLink from "./edit-link";
 import NewLink from "./new";
 
@@ -65,7 +63,7 @@ const Home = () => {
       name: "Short Link",
       cell: row => (
         <Link href={`https://shortify-rg0z.onrender.com/${row.shortUrl}`}>
-          {`https://shortify-rg0z.onrender.com/${row.shortUrl}`}
+          {`shortify/${row.shortUrl}`}
         </Link>
       ),
     },
@@ -113,7 +111,6 @@ const Home = () => {
             {
               label: "View",
               cta: () => {
-                // setOpenAddModal(true);
                 navigate(`/links/${row.id}`);
               },
             },
@@ -122,8 +119,6 @@ const Home = () => {
               cta: () => {
                 setLink(row);
                 setOpenEditModal(true);
-                // setLink(undefined);
-                // navigate(`/links/${row.id}/edit`);
               },
             },
             {
@@ -156,29 +151,6 @@ const Home = () => {
       </Flex>
       <Box mt="60px">
         <DataTable data={data} columns={columns} pagination={true} />
-        {/* <TablePagination
-        count={count}
-        nextLoad={dummyData.pageCursors.next?.cursor}
-        previous={dummyData.pageCursors.previous?.cursor}
-        setCount={setCount}
-        totalCount={dummyData.totalCount}
-        handleNextLoad={() => {
-          const next = data.pageCursors.next;
-          if (!next) return;
-          setSearch((prevState: InvoiceParamsType) => ({
-            ...prevState,
-            cursor: next.cursor,
-          }));
-        }}
-        handlePreviousLoad={() => {
-          const previous = data.pageCursors.previous;
-          if (!previous) return;
-          setSearch((prevState: InvoiceParamsType) => ({
-            ...prevState,
-            cursor: previous.cursor,
-          }));
-        }}
-      /> */}
       </Box>
       <NewLink isOpen={openAddModal} close={setOpenAddModal}></NewLink>
       <EditLink isOpen={openEditModal} row={link} setLink={setLink} setOpenEditModal={setOpenEditModal}></EditLink>
@@ -187,26 +159,4 @@ const Home = () => {
 }
   
   export default Home
-  // const dummyData = [
-  //   {
-  //     title: "title One",
-  //     shortUrl: "https://bit.ly/3ColxLe",
-  //     longUrl: "https://www.chukwurahvictor.com/",
-  //     isActive: true,
-  //     updatedAt: "06-12-2023",
-  //   },
-  //   {
-  //     title: "title Two",
-  //     shortUrl: "https://bit.ly/3ColxLe",
-  //     longUrl: "https://www.chukwurahvictor.com/",
-  //     isActive: false,
-  //     updatedAt: "06-12-2023",
-  //   },
-  //   {
-  //     title: "title Three",
-  //     shortUrl: "https://bit.ly/3ColxLe",
-  //     longUrl: "https://www.chukwurahvictor.com/",
-  //     isActive: true,
-  //     updatedAt: "06-12-2023",
-  //   },
-  // ];
+  

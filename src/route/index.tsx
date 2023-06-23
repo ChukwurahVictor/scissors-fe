@@ -1,15 +1,14 @@
-// import { lazy } from "react";
+import { lazy } from "react";
 
-import Home from "pages/home";
-import ViewLink from "pages/home/view-link";
 import Login from "pages/auth/login";
 import Signup from "pages/auth/signup";
 import ConfirmEmail from "pages/auth/signup/confirm-email";
 import LandingPage from "pages/landing";
 import NotFoundPage from "components/not-found";
 import ChangePassword from "pages/settings/change-password";
-// import EditLink from "pages/home/edit-link";
-// import NewLink from "pages/home/new";
+
+const Home = lazy(() => import("pages/home"));
+const ViewLink = lazy(() => import("pages/home/view-link"));
 
 interface RouterProps {
   path: string;
@@ -25,8 +24,6 @@ export const links = {
   home: "/links",
   view: "links/:id",
   settings: "links/settings",
-  // new: "/links/create",
-  // edit: 'links/:id/edit'
 };
 
 export const routes = (): RouterProps[] => [
@@ -34,18 +31,10 @@ export const routes = (): RouterProps[] => [
     path: links.home,
     element: <Home />,
   },
-  // {
-  //   path: links.new,
-  //   element: <NewLink />,
-  // },
   {
     path: links.view,
     element: <ViewLink />,
   },
-  // {
-  //   path: links.edit,
-  //   element: <EditLink />,
-  // },
   {
     path: links.login,
     element: <Login />,

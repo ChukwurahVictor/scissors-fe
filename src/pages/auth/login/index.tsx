@@ -5,7 +5,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { signinSchema } from "schema";
 import { LoginResponseType } from "types";
 import {
-  // SigninPayloadType,
   loginDispatch,
 } from "redux/slices/auth";
 import useAxios from "hooks/use-axios";
@@ -22,7 +21,6 @@ import {
   Flex,
   FormControl,
   FormErrorMessage,
-  // FormHelperText,
   FormLabel,
   Input,
   Text,
@@ -80,7 +78,6 @@ const Login = () => {
       <Box
         w="md"
         alignItems="center"
-        // border="1px solid gray"
         borderRadius="10px"
         p="35px 35px"
         shadow={"base"}

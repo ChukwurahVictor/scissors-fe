@@ -4,13 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { signupSchema } from "schema";
 import { SignupResponseType } from "types";
-// import {
-//   // SigninPayloadType,
-//   loginDispatch,
-// } from "redux/slices/auth";
 import useAxios from "hooks/use-axios";
 import { showToast } from "utils/show-toast";
-// import { useAppDispatch } from "redux/hooks";
 import urls from "services/axios/urls";
 
 import {
@@ -18,8 +13,6 @@ import {
   Button,
   Flex,
   FormControl,
-  // FormErrorMessage,
-  // FormHelperText,
   FormLabel,
   Input,
   Text,
@@ -30,13 +23,12 @@ import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Signup = () => {
   const navigate = useNavigate();
-  // const dispatch = useAppDispatch();
   const { loading, makeRequest } = useAxios<SignupResponseType>();
 
   const {
     handleSubmit,
     register,
-    // formState: { errors },
+    formState: { errors },
   } = useForm<any>({
     resolver: yupResolver(signupSchema),
     defaultValues: {
@@ -72,8 +64,6 @@ const Signup = () => {
 
     console.log(resData)
 
-    // dispatch(loginDispatch(resData!.data.user));
-
     navigate(`/confirm-email/${resData!.data.id}`);
   };
 
@@ -82,7 +72,6 @@ const Signup = () => {
       <Box
         w="md"
         alignItems="center"
-        // border="1px solid gray"
         borderRadius="10px"
         p="35px 35px"
         shadow={"base"}
@@ -101,6 +90,9 @@ const Signup = () => {
               placeholder="username"
               {...register("userName")}
             />
+            <FormErrorMessage>
+              {errors.name && errors.name.message}
+            </FormErrorMessage>
           </FormControl>
           <FormControl>
             <FormLabel htmlFor="email">Email</FormLabel>
@@ -109,6 +101,9 @@ const Signup = () => {
               placeholder="johndoe@mail.com"
               {...register("email")}
             />
+            <FormErrorMessage>
+              {errors.name && errors.name.message}
+            </FormErrorMessage>
           </FormControl>
           <FormControl mt="10px">
             <FormLabel htmlFor="password">Password</FormLabel>
@@ -118,9 +113,9 @@ const Signup = () => {
               placeholder="password"
               {...register("password")}
             />
-            {/* <FormErrorMessage>
+            <FormErrorMessage>
               {errors.name && errors.name.message}
-            </FormErrorMessage> */}
+            </FormErrorMessage>
           </FormControl>
           <Button
             mt={4}

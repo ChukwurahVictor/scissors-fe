@@ -5,7 +5,6 @@ import {
   Button,
   ButtonGroup,
   Flex,
-  // Icon,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -49,7 +48,6 @@ interface ActionsPropsType {
 
 const renderIcon = ({
   label,
-  // status,
   cta,
   loading,
   allowPopover,

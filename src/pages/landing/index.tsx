@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Text, Box, Container, Button, Flex } from "@chakra-ui/react"
 import { ReactComponent as Stroke } from "../../assets/icons/stroke.svg";
 
@@ -34,7 +35,9 @@ const LandingPage = () => {
       </Container>
       <Flex gap="8" alignItems="center" justify="center" mt="30px">
         <Button bg="#1068AB" color="white" borderRadius="20px" p="10px 15px">
-          <Text>Register Now</Text>
+          <Link to="/signup">
+            <Text>Register Now</Text>
+          </Link>
         </Button>
         <Text color="#1068AB">Learn More</Text>
       </Flex>

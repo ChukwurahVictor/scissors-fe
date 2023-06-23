@@ -66,7 +66,6 @@ const NewLink = ({ isOpen, close }: Props) => {
     >
       <form onSubmit={handleSubmit(submit)}>
         <Flex flexDirection="column" gap="2.4rem" mt="40px">
-          {/* <Text>Shorten your Url!</Text> */}
           <FormControl>
             <FormLabel htmlFor="title">Title</FormLabel>
             <Input type="text" placeholder="title" {...register("title")} />

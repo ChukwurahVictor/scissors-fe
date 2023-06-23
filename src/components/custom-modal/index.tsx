@@ -11,14 +11,11 @@ export interface ModalPropType {
   setModalOpen: (modalOpen: boolean) => void;
   modalOpen: boolean;
   children: JSX.Element | JSX.Element[];
-  // maxW?: string;
-  // height?: string;
   description?: string;
   closeIcon?: boolean;
   closeIconClick?: () => void;
   closeOnOverlayClick?: boolean;
   contentProps?: ModalContentProps;
-  // onCloseComplete?: () => void;
 }
 
 const CustomModal = ({
@@ -30,7 +27,6 @@ const CustomModal = ({
   description,
   closeOnOverlayClick,
   contentProps,
-  // onCloseComplete,
 }: ModalPropType) => {
   const closeModal = () => {
     closeIconClick && closeIconClick();
@@ -41,7 +37,6 @@ const CustomModal = ({
       isOpen={modalOpen}
       closeOnOverlayClick={closeOnOverlayClick || false}
       onClose={closeModal}
-      // onCloseComplete={onCloseComplete}
       onOverlayClick={closeModal}
     >
       <ModalOverlay />

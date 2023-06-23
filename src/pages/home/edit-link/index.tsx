@@ -1,5 +1,4 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-// import { useNavigate } from "react-router-dom";
 import { mutate } from "swr";
 import {
   Button,
@@ -8,7 +7,6 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
-//   Text,
 } from "@chakra-ui/react";
 
 import useAxios from "hooks/use-axios";
@@ -68,8 +66,6 @@ const EditLink = ({ isOpen, row, setLink, setOpenEditModal }: Props) => {
 
   const handleCloseModal = () => {
     setLink(undefined);
-    // console.log(setLink);
-    // console.log(row);
     setOpenEditModal(false);
   }
   console.log(row);
@@ -86,7 +82,6 @@ const EditLink = ({ isOpen, row, setLink, setOpenEditModal }: Props) => {
     >
       <form onSubmit={handleSubmit(submit)}>
         <Flex flexDirection="column" gap="2.4rem" mt="40px">
-          {/* <Text>Shorten your Url!</Text> */}
           <FormControl>
             <FormLabel htmlFor="title">Title</FormLabel>
             <Input
@@ -106,8 +101,6 @@ const EditLink = ({ isOpen, row, setLink, setOpenEditModal }: Props) => {
               placeholder="custom name"
               defaultValue={row?.customName}
               key={row?.customName}
-              //   onChange
-              //   {setValue(row?.customName)}
               {...register("customName")}
             />
             <FormErrorMessage>
