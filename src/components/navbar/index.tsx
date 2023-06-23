@@ -1,11 +1,8 @@
-import logo from "assets/images/logo.svg";
 import {
-  Box,
   Flex,
   Text,
   Container,
   Button,
-  Image,
   Menu,
   MenuButton,
   MenuList,

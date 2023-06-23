@@ -1,24 +1,6 @@
-import { fetchUrls } from "../axios/link";
-import { AxiosError } from "axios";
-import urls from "../axios/urls";
-import { KeyedMutator } from "swr";
 import useSWR from "swr";
-
-// export type DataType = {
-//   data: Url[];
-// };
-
-// export const reformData = (data: DataType): Url[] =>
-//   data?.data?.map((d: Url) => ({ ...d })) || [];
-
-// export type SwrFetchReturnType = {
-//   data: {
-//     data: Url[]
-//   };
-//   isGenerating: boolean;
-//   isError: AxiosError;
-//   mutate: KeyedMutator<any>;
-// };
+import { fetchUrls, fetchSingleUrl } from "../axios/link";
+import urls from "../axios/urls";
 
 export const useFetchUrls = () => {
   const fetcher = async () => {

@@ -15,7 +15,7 @@ import useAxios from "hooks/use-axios";
 import urls from "services/axios/urls";
 import { showToast } from "utils/show-toast";
 
-import ViewLink from "./view-link";
+// import ViewLink from "./view-link";
 import EditLink from "./edit-link";
 import NewLink from "./new";
 

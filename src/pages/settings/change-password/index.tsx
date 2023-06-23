@@ -72,16 +72,16 @@ const ChangePassword = () => {
         <FormControl>
           <FormLabel htmlFor="Current Password">Current password</FormLabel>
           <Input type="text" placeholder="current password" {...register("currentPassword")} />
-          {/* <FormErrorMessage>
+          <FormErrorMessage>
             {errors?.token && errors?.token.message?.toString()}
-          </FormErrorMessage> */}
+          </FormErrorMessage>
         </FormControl>
         <FormControl>
           <FormLabel htmlFor="New Password">New password</FormLabel>
           <Input type="text" placeholder="new password" {...register("newPassword")} />
-          {/* <FormErrorMessage>
+          <FormErrorMessage>
             {errors?.token && errors?.token.message?.toString()}
-          </FormErrorMessage> */}
+          </FormErrorMessage>
         </FormControl>
         <Button
           mt={4}

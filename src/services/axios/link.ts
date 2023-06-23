@@ -24,6 +24,6 @@ export const fetchUrls = () => {
 export const fetchSingleUrl = (id: string) => {
   return axios({
     method: "get",
-    url: urls.fetchSingleUrl,
+    url: urls.fetchSingleUrl(id),
   });
 };

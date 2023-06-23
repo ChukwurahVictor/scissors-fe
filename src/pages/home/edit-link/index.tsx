@@ -75,8 +75,6 @@ const EditLink = ({ isOpen, row, setLink, setOpenEditModal }: Props) => {
   console.log(row);
   return (
     <CustomModal
-      maxW="60%"
-      height="70%"
       closeIcon
       contentProps={{ justifyContent: "center" }}
       description="EDIT LINK"

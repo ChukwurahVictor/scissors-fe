@@ -4,8 +4,6 @@ import { ErrorBoundary } from "react-error-boundary";
 
 import "services/axios/interceptor";
 import Navbar from "./components/navbar"
-import LandingPage from "./pages/landing"
-import Home from "./pages/home"
 import { routes } from "./route";
 
 function App() {
