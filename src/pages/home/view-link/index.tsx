@@ -10,7 +10,7 @@ const ViewLink = () => {
   const { data, isGenerating } = useFetchSingleUrl(id!);
 
   const goToHome = () => {
-    navigate("/links");
+    navigate(-1);
   };
 
   return (

@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 
 import Login from "pages/auth/login";
 import Signup from "pages/auth/signup";
@@ -6,6 +6,8 @@ import ConfirmEmail from "pages/auth/signup/confirm-email";
 import LandingPage from "pages/landing";
 import NotFoundPage from "components/not-found";
 import ChangePassword from "pages/settings/change-password";
+import { ErrorBoundary } from "react-error-boundary";
+import CustomSpinner from "components/custom-spinner";
 
 const Home = lazy(() => import("pages/home"));
 const ViewLink = lazy(() => import("pages/home/view-link"));
@@ -29,11 +31,23 @@ export const links = {
 export const routes = (): RouterProps[] => [
   {
     path: links.home,
-    element: <Home />,
+    element: (
+      <ErrorBoundary fallback={<p>Something went wrong</p>}>
+        <Suspense fallback={<CustomSpinner />}>
+          <Home />
+        </Suspense>
+      </ErrorBoundary>
+    ),
   },
   {
     path: links.view,
-    element: <ViewLink />,
+    element: (
+      <ErrorBoundary fallback={<p>Something went wrong</p>}>
+        <Suspense fallback={<CustomSpinner />}>
+          <ViewLink />
+        </Suspense>
+      </ErrorBoundary>
+    ),
   },
   {
     path: links.login,
