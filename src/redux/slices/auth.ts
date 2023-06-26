@@ -23,9 +23,7 @@ const initialState: AuthState = {
     user: {
       id: "",
       email: "",
-      firstName: "",
-      lastName: "",
-      displayName: "",
+      userName: "",
     },
   },
   httpError: null,
@@ -82,9 +80,7 @@ export const authSlice = createSlice({
         user: {
           id: "",
           email: "",
-          firstName: "",
-          lastName: "",
-          displayName: "",
+          userName: "",
         },
       }
     },

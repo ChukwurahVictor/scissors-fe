@@ -68,7 +68,7 @@ const Login = () => {
     });
 
     sessionStorage.setItem("auth-token", resData?.data.access_token);
-    dispatch(loginDispatch(resData?.data.user));
+    dispatch(loginDispatch(resData?.data.data));
 
     navigate("/links");
   };

@@ -30,9 +30,7 @@ export type AuthState = {
     user: {
       id: string;
       email: string;
-      firstName: string;
-      lastName: string;
-      displayName: string;
+      userName: string;
     };
   };
   httpError: any;

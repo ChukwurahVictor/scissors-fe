@@ -92,7 +92,7 @@ const Signup = () => {
               {errors?.username && errors?.username.message?.toString()}
             </FormErrorMessage>
           </FormControl>
-          <FormControl>
+          <FormControl mt="10px">
             <FormLabel htmlFor="email">Email</FormLabel>
             <Input
               type="email"
