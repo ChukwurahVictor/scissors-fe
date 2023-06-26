@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { mutate } from "swr";
 import {
   Button,
@@ -17,7 +17,6 @@ import { showToast } from "utils/show-toast";
 
 const ChangePassword = () => {
     const navigate = useNavigate();
-    const { id } = useParams();
     const { loading, makeRequest } = useAxios();
 
   const {
@@ -35,7 +34,7 @@ const ChangePassword = () => {
     } = await makeRequest({
       payload: data,
       method: "post",
-      url: urls.verifyMailUrl(id!),
+      url: urls.changePassword,
     });
 
     if (status === "error") {
@@ -54,8 +53,14 @@ const ChangePassword = () => {
 
     navigate("/links");
   };
+
+  const goToHome = () => {
+    navigate("/links");
+  };
+
   return (
     <form onSubmit={handleSubmit(submit)}>
+      <Button onClick={goToHome} ml={"5%"}>Back</Button>
       <Flex
         flexDirection="column"
         gap="2.4rem"

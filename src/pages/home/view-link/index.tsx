@@ -1,15 +1,23 @@
-import { Box, Divider, Flex, Text } from "@chakra-ui/react"
+import { Box, Button, Divider, Flex, Text } from "@chakra-ui/react"
 import CustomSpinner from "components/custom-spinner";
 import TableStatus from "components/table-status";
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { useFetchSingleUrl } from "services/swr/link"
 
 const ViewLink = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { data, isGenerating } = useFetchSingleUrl(id!);
 
+  const goToHome = () => {
+    navigate("/links");
+  };
+
   return (
-    <Box maxW="4xl" mx="auto">
+    <Box maxW="5xl" mx="auto">
+      <Button onClick={goToHome} ml={'2'}>
+        Back
+      </Button>
       {isGenerating ? (
         <Flex justify={"center"} alignItems={"center"}>
           <CustomSpinner />

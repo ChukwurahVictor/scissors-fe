@@ -23,7 +23,7 @@ export const links = {
   confirmEmail: "/confirm-email/:id",
   home: "/links",
   view: "links/:id",
-  settings: "links/settings",
+  changePassword: "links/change-password",
 };
 
 export const routes = (): RouterProps[] => [
@@ -52,7 +52,7 @@ export const routes = (): RouterProps[] => [
     element: <LandingPage />,
   },
   {
-    path: links.settings,
+    path: links.changePassword,
     element: <ChangePassword />,
   },
   {

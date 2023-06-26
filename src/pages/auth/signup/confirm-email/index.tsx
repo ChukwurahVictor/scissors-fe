@@ -52,8 +52,27 @@ const ConfirmEmail = () => {
 
     mutate(`${urls.fetchUrls}`);
 
-    navigate("/links");
+    navigate("/login");
   };
+
+  const resendToken = async() => {
+    const { status, error } = await makeRequest({
+      method: "post",
+      url: urls.resendToken(id!),
+    });
+
+    if (status === "error") {
+      return showToast({
+        type: "error",
+        message: String(error) || "An error occurred",
+      });
+    }
+
+    showToast({
+      type: "success",
+      message: "Token resent Successfully!",
+    });
+  }
   
   return (
     <form onSubmit={handleSubmit(submit)}>
@@ -90,7 +109,14 @@ const ConfirmEmail = () => {
         </Button>
         <Flex gap="2">
           <Text>Didn't receive any mail?</Text>
-          <Text color="#1068AB" fontWeight={"semibold"}>Resend</Text>
+          <Text
+            color="#1068AB"
+            fontWeight={"semibold"}
+            as="button"
+            onClick={resendToken}
+          >
+            Resend
+          </Text>
         </Flex>
       </Flex>
     </form>

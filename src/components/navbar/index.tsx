@@ -33,9 +33,16 @@ const Navbar = () => {
         <ul className="navList">
           <Flex justify="space-between" h="90px" alignItems="center">
             <Flex alignItems="center">
-              <Link to="/links">
-                <Text fontSize={"2xl"} fontWeight={"bold"} fontStyle={"oblique"} color="#1068AB">SHORTIFY</Text>
-              </Link>
+              {/* <Link to="/links"> */}
+              <Text
+                fontSize={"2xl"}
+                fontWeight={"bold"}
+                fontStyle={"oblique"}
+                color="#1068AB"
+              >
+                SHORTIFY
+              </Text>
+              {/* </Link> */}
             </Flex>
             <Flex justify="end">
               {!isLoggedIn ? (
@@ -93,10 +100,10 @@ const Navbar = () => {
                     </MenuItem>
                     <MenuItem>
                       <Link
-                        to="/links/settings"
+                        to="/links/change-password"
                         style={{ textDecoration: "none" }}
                       >
-                        <Text>Settings</Text>
+                        <Text>Change password</Text>
                       </Link>
                     </MenuItem>
                     <MenuDivider />
