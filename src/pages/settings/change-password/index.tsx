@@ -55,7 +55,7 @@ const ChangePassword = () => {
   };
 
   const goToHome = () => {
-    navigate("/links");
+    navigate(-1);
   };
 
   return (

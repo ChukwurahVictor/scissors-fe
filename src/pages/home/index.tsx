@@ -151,13 +151,14 @@ const Home = () => {
         <Input placeholder="search" w="20rem" h="3rem" borderRadius="10px" />
       </Flex>
       <Box mt="60px">
-        <DataTable
+        {data && data.length > 0 ? <DataTable
           data={data}
           columns={columns}
           pagination={true}
           progressComponent={<CustomSpinner />}
           progressPending={isGenerating}
-        />
+        /> : <CustomSpinner />
+        }
       </Box>
       <NewLink
         isOpen={openAddModal}

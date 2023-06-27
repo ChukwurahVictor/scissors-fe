@@ -4,12 +4,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { signinSchema } from "schema";
 import { LoginResponseType } from "types";
-import {
-  loginDispatch,
-} from "redux/slices/auth";
+import { loginDispatch, selectAuth } from "redux/slices/auth";
 import useAxios from "hooks/use-axios";
 import { showToast } from "utils/show-toast";
-import { useAppDispatch } from "redux/hooks";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import urls from "services/axios/urls";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";;
@@ -25,11 +23,19 @@ import {
   Input,
   Text,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { isLoggedIn } = useAppSelector(selectAuth);
   const { loading, makeRequest } = useAxios<LoginResponseType>();
+
+  useEffect(() => {
+    if(isLoggedIn) {
+      navigate("/links")
+    }
+  },[]);
 
   const {
     handleSubmit,
@@ -74,58 +80,58 @@ const Login = () => {
   };
 
   return (
-    <Flex justify="center" mt="7%" px="30px">
-      <Box
-        w="md"
-        alignItems="center"
-        borderRadius="10px"
-        p="35px 35px"
-        shadow={"base"}
-      >
-        <Flex gap="2" justify="center" alignItems={"center"} mb="30px">
-          <Text fontSize="30px" fontWeight="bold" pb="10px">
-            Login
-          </Text>
-          <FontAwesomeIcon icon={faRightToBracket} size="2xl" />
-        </Flex>
-        <form onSubmit={handleSubmit(submit)}>
-          <FormControl>
-            <FormLabel htmlFor="email">Email</FormLabel>
-            <Input
-              type="email"
-              placeholder="johndoe@mail.com"
-              {...register("email")}
-            />
-            <FormErrorMessage>
-              {errors?.email && errors?.email.message?.toString()}
-            </FormErrorMessage>
-          </FormControl>
-          <FormControl mt="10px">
-            <FormLabel htmlFor="password">Password</FormLabel>
-            <Input
-              id="password"
-              type="password"
-              placeholder="password"
-              {...register("password")}
-            />
-            <FormErrorMessage>
-              {errors?.password && errors?.password.message?.toString()}
-            </FormErrorMessage>
-          </FormControl>
-          <Button
-            mt={4}
-            w="full"
-            bg="#1068AB"
-            color="white"
-            type="submit"
-            isLoading={loading}
-            disabled={loading}
-          >
-            Submit
-          </Button>
-        </form>
-      </Box>
-    </Flex>
+      <Flex justify="center" mt="7%" px="30px">
+        <Box
+          w="md"
+          alignItems="center"
+          borderRadius="10px"
+          p="35px 35px"
+          shadow={"base"}
+        >
+          <Flex gap="2" justify="center" alignItems={"center"} mb="30px">
+            <Text fontSize="30px" fontWeight="bold" pb="10px">
+              Login
+            </Text>
+            <FontAwesomeIcon icon={faRightToBracket} size="2xl" />
+          </Flex>
+          <form onSubmit={handleSubmit(submit)}>
+            <FormControl>
+              <FormLabel htmlFor="email">Email</FormLabel>
+              <Input
+                type="email"
+                placeholder="johndoe@mail.com"
+                {...register("email")}
+              />
+              <FormErrorMessage>
+                {errors?.email && errors?.email.message?.toString()}
+              </FormErrorMessage>
+            </FormControl>
+            <FormControl mt="10px">
+              <FormLabel htmlFor="password">Password</FormLabel>
+              <Input
+                id="password"
+                type="password"
+                placeholder="password"
+                {...register("password")}
+              />
+              <FormErrorMessage>
+                {errors?.password && errors?.password.message?.toString()}
+              </FormErrorMessage>
+            </FormControl>
+            <Button
+              mt={4}
+              w="full"
+              bg="#1068AB"
+              color="white"
+              type="submit"
+              isLoading={loading}
+              disabled={loading}
+            >
+              Submit
+            </Button>
+          </form>
+        </Box>
+      </Flex>
   );
 };
 
