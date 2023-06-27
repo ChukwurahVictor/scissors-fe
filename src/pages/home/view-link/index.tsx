@@ -86,7 +86,7 @@ const ViewLink = () => {
             <Text fontWeight="medium" color="grey">
               QR Code
             </Text>
-            <Image src={data?.qrcode.image} />
+            <Image src={data?.qrcode?.image} />
           </Flex>
         </Flex>
         <Divider />
